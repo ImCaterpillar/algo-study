@@ -1,0 +1,1528 @@
+[
+  {
+    "id": 1,
+    "leetcode_id": 1,
+    "title": "Two Sum",
+    "title_cn": "两数之和",
+    "slug": "two-sum",
+    "difficulty": "Easy",
+    "tags": [
+      "Array",
+      "Hash Table"
+    ],
+    "stage": "beginner",
+    "key_pattern": "哈希表记录已访问数字，边遍历边查找补数。",
+    "starter_code": {
+      "python": "def solve(nums, target):\n    # TODO\n    pass\n",
+      "java": "class Solution {\n    public int[] twoSum(int[] nums, int target) {\n        return new int[]{};\n    }\n}\n",
+      "cpp": "class Solution {\npublic:\n    vector<int> twoSum(vector<int>& nums, int target) {\n        return {};\n    }\n};\n"
+    },
+    "examples": [
+      {
+        "input": "nums=[2,7,11,15], target=9",
+        "output": "[0,1]"
+      }
+    ],
+    "recommended_order": 1,
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/two-sum/",
+    "description": "在数组中寻找两个数，使它们的和等于目标值，返回这两个位置。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 2,
+    "leetcode_id": 217,
+    "title": "Contains Duplicate",
+    "title_cn": "存在重复元素",
+    "slug": "contains-duplicate",
+    "difficulty": "Easy",
+    "tags": [
+      "Array",
+      "Hash Table"
+    ],
+    "stage": "beginner",
+    "key_pattern": "用集合去重，比较长度或遍历检测重复。",
+    "examples": [
+      {
+        "input": "nums=[1,2,3,1]",
+        "output": "true"
+      }
+    ],
+    "recommended_order": 2,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/contains-duplicate/",
+    "description": "判断数组中是否存在重复数字。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 3,
+    "leetcode_id": 242,
+    "title": "Valid Anagram",
+    "title_cn": "有效的字母异位词",
+    "slug": "valid-anagram",
+    "difficulty": "Easy",
+    "tags": [
+      "String",
+      "Hash Table",
+      "Sorting"
+    ],
+    "stage": "beginner",
+    "key_pattern": "字符计数或排序比较。",
+    "examples": [
+      {
+        "input": "s='anagram', t='nagaram'",
+        "output": "true"
+      }
+    ],
+    "recommended_order": 3,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/valid-anagram/",
+    "description": "判断两个字符串是否由相同字符组成且字符频次一致。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 4,
+    "leetcode_id": 121,
+    "title": "Best Time to Buy and Sell Stock",
+    "title_cn": "买卖股票的最佳时机",
+    "slug": "best-time-to-buy-and-sell-stock",
+    "difficulty": "Easy",
+    "tags": [
+      "Array",
+      "Dynamic Programming",
+      "Greedy"
+    ],
+    "stage": "beginner",
+    "key_pattern": "维护历史最低价，遍历时计算当前卖出的最大利润。",
+    "examples": [
+      {
+        "input": "prices=[7,1,5,3,6,4]",
+        "output": "5"
+      }
+    ],
+    "recommended_order": 4,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
+    "description": "只允许买卖一次股票，求最大利润。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 5,
+    "leetcode_id": 53,
+    "title": "Maximum Subarray",
+    "title_cn": "最大子数组和",
+    "slug": "maximum-subarray",
+    "difficulty": "Medium",
+    "tags": [
+      "Array",
+      "Dynamic Programming",
+      "Kadane"
+    ],
+    "stage": "beginner",
+    "key_pattern": "Kadane 算法：当前位置最大和要么从当前数开始，要么接上之前子数组。",
+    "examples": [
+      {
+        "input": "nums=[-2,1,-3,4,-1,2,1,-5,4]",
+        "output": "6"
+      }
+    ],
+    "recommended_order": 5,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/maximum-subarray/",
+    "description": "寻找连续子数组，使其和最大。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 6,
+    "leetcode_id": 283,
+    "title": "Move Zeroes",
+    "title_cn": "移动零",
+    "slug": "move-zeroes",
+    "difficulty": "Easy",
+    "tags": [
+      "Array",
+      "Two Pointers"
+    ],
+    "stage": "beginner",
+    "key_pattern": "慢指针记录下一个非零元素应该放的位置。",
+    "examples": [
+      {
+        "input": "nums=[0,1,0,3,12]",
+        "output": "[1,3,12,0,0]"
+      }
+    ],
+    "recommended_order": 6,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/move-zeroes/",
+    "description": "将数组中的 0 移动到末尾，同时保持非零元素相对顺序。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 7,
+    "leetcode_id": 88,
+    "title": "Merge Sorted Array",
+    "title_cn": "合并两个有序数组",
+    "slug": "merge-sorted-array",
+    "difficulty": "Easy",
+    "tags": [
+      "Array",
+      "Two Pointers",
+      "Sorting"
+    ],
+    "stage": "beginner",
+    "key_pattern": "从后往前双指针填充，避免覆盖前面的元素。",
+    "examples": [
+      {
+        "input": "nums1=[1,2,3,0,0,0], m=3, nums2=[2,5,6], n=3",
+        "output": "[1,2,2,3,5,6]"
+      }
+    ],
+    "recommended_order": 7,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/merge-sorted-array/",
+    "description": "将两个有序数组合并到第一个数组中。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 8,
+    "leetcode_id": 125,
+    "title": "Valid Palindrome",
+    "title_cn": "验证回文串",
+    "slug": "valid-palindrome",
+    "difficulty": "Easy",
+    "tags": [
+      "Two Pointers",
+      "String"
+    ],
+    "stage": "beginner",
+    "key_pattern": "左右指针跳过无关字符后比较。",
+    "examples": [
+      {
+        "input": "s='A man, a plan, a canal: Panama'",
+        "output": "true"
+      }
+    ],
+    "recommended_order": 8,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/valid-palindrome/",
+    "description": "忽略非字母数字字符和大小写后，判断字符串是否回文。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 9,
+    "leetcode_id": 704,
+    "title": "Binary Search",
+    "title_cn": "二分查找",
+    "slug": "binary-search",
+    "difficulty": "Easy",
+    "tags": [
+      "Array",
+      "Binary Search"
+    ],
+    "stage": "beginner",
+    "key_pattern": "维护左右边界，每次缩小一半搜索范围。",
+    "examples": [
+      {
+        "input": "nums=[-1,0,3,5,9,12], target=9",
+        "output": "4"
+      }
+    ],
+    "recommended_order": 9,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/binary-search/",
+    "description": "在升序数组中查找目标值的位置。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 10,
+    "leetcode_id": 20,
+    "title": "Valid Parentheses",
+    "title_cn": "有效的括号",
+    "slug": "valid-parentheses",
+    "difficulty": "Easy",
+    "tags": [
+      "String",
+      "Stack"
+    ],
+    "stage": "beginner",
+    "key_pattern": "遇到左括号入栈，遇到右括号检查栈顶是否匹配。",
+    "examples": [
+      {
+        "input": "s='()[]{}'",
+        "output": "true"
+      }
+    ],
+    "recommended_order": 10,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/valid-parentheses/",
+    "description": "判断括号字符串是否有效匹配。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 11,
+    "leetcode_id": 206,
+    "title": "Reverse Linked List",
+    "title_cn": "反转链表",
+    "slug": "reverse-linked-list",
+    "difficulty": "Easy",
+    "tags": [
+      "Linked List",
+      "Recursion"
+    ],
+    "stage": "core",
+    "key_pattern": "三个指针 prev / cur / next 逐步反转指向。",
+    "examples": [
+      {
+        "input": "1->2->3->4->5",
+        "output": "5->4->3->2->1"
+      }
+    ],
+    "recommended_order": 11,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/reverse-linked-list/",
+    "description": "反转单链表。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 12,
+    "leetcode_id": 21,
+    "title": "Merge Two Sorted Lists",
+    "title_cn": "合并两个有序链表",
+    "slug": "merge-two-sorted-lists",
+    "difficulty": "Easy",
+    "tags": [
+      "Linked List",
+      "Recursion"
+    ],
+    "stage": "core",
+    "key_pattern": "虚拟头节点 + 双指针逐个连接较小节点。",
+    "examples": [
+      {
+        "input": "list1=1->2->4, list2=1->3->4",
+        "output": "1->1->2->3->4->4"
+      }
+    ],
+    "recommended_order": 12,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/merge-two-sorted-lists/",
+    "description": "合并两个升序链表为一个升序链表。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 13,
+    "leetcode_id": 141,
+    "title": "Linked List Cycle",
+    "title_cn": "环形链表",
+    "slug": "linked-list-cycle",
+    "difficulty": "Easy",
+    "tags": [
+      "Linked List",
+      "Two Pointers"
+    ],
+    "stage": "core",
+    "key_pattern": "快慢指针，若存在环则两个指针最终相遇。",
+    "examples": [
+      {
+        "input": "head=[3,2,0,-4], pos=1",
+        "output": "true"
+      }
+    ],
+    "recommended_order": 13,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/linked-list-cycle/",
+    "description": "判断链表是否存在环。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 14,
+    "leetcode_id": 232,
+    "title": "Implement Queue using Stacks",
+    "title_cn": "用栈实现队列",
+    "slug": "implement-queue-using-stacks",
+    "difficulty": "Easy",
+    "tags": [
+      "Stack",
+      "Queue",
+      "Design"
+    ],
+    "stage": "core",
+    "key_pattern": "输入栈负责入队，输出栈负责出队，必要时整体倒入。",
+    "examples": [
+      {
+        "input": "push(1), push(2), peek(), pop(), empty()",
+        "output": "1, 1, false"
+      }
+    ],
+    "recommended_order": 14,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/implement-queue-using-stacks/",
+    "description": "用两个栈实现队列的基本操作。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 15,
+    "leetcode_id": 155,
+    "title": "Min Stack",
+    "title_cn": "最小栈",
+    "slug": "min-stack",
+    "difficulty": "Medium",
+    "tags": [
+      "Stack",
+      "Design"
+    ],
+    "stage": "core",
+    "key_pattern": "一个普通栈保存元素，另一个辅助栈同步保存当前最小值。",
+    "examples": [
+      {
+        "input": "push(-2), push(0), push(-3), getMin(), pop(), top(), getMin()",
+        "output": "-3, 0, -2"
+      }
+    ],
+    "recommended_order": 15,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/min-stack/",
+    "description": "设计一个支持常数时间获取最小值的栈。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 16,
+    "leetcode_id": 102,
+    "title": "Binary Tree Level Order Traversal",
+    "title_cn": "二叉树层序遍历",
+    "slug": "binary-tree-level-order-traversal",
+    "difficulty": "Medium",
+    "tags": [
+      "Tree",
+      "BFS",
+      "Queue"
+    ],
+    "stage": "core",
+    "key_pattern": "队列 BFS，每一轮处理当前层的所有节点。",
+    "examples": [
+      {
+        "input": "root=[3,9,20,null,null,15,7]",
+        "output": "[[3],[9,20],[15,7]]"
+      }
+    ],
+    "recommended_order": 16,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+    "description": "按层从左到右遍历二叉树。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 17,
+    "leetcode_id": 104,
+    "title": "Maximum Depth of Binary Tree",
+    "title_cn": "二叉树的最大深度",
+    "slug": "maximum-depth-of-binary-tree",
+    "difficulty": "Easy",
+    "tags": [
+      "Tree",
+      "DFS",
+      "BFS"
+    ],
+    "stage": "core",
+    "key_pattern": "递归返回左右子树深度最大值 + 1。",
+    "examples": [
+      {
+        "input": "root=[3,9,20,null,null,15,7]",
+        "output": "3"
+      }
+    ],
+    "recommended_order": 17,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+    "description": "计算二叉树最大深度。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 18,
+    "leetcode_id": 226,
+    "title": "Invert Binary Tree",
+    "title_cn": "翻转二叉树",
+    "slug": "invert-binary-tree",
+    "difficulty": "Easy",
+    "tags": [
+      "Tree",
+      "DFS",
+      "BFS"
+    ],
+    "stage": "core",
+    "key_pattern": "递归或 BFS 遍历每个节点并交换左右孩子。",
+    "examples": [
+      {
+        "input": "root=[4,2,7,1,3,6,9]",
+        "output": "[4,7,2,9,6,3,1]"
+      }
+    ],
+    "recommended_order": 18,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/invert-binary-tree/",
+    "description": "交换每个节点的左右子树。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 19,
+    "leetcode_id": 543,
+    "title": "Diameter of Binary Tree",
+    "title_cn": "二叉树的直径",
+    "slug": "diameter-of-binary-tree",
+    "difficulty": "Easy",
+    "tags": [
+      "Tree",
+      "DFS"
+    ],
+    "stage": "core",
+    "key_pattern": "后序 DFS 求深度，同时用左右深度之和更新答案。",
+    "examples": [
+      {
+        "input": "root=[1,2,3,4,5]",
+        "output": "3"
+      }
+    ],
+    "recommended_order": 19,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/diameter-of-binary-tree/",
+    "description": "求二叉树中任意两个节点之间最长路径的边数。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 20,
+    "leetcode_id": 98,
+    "title": "Validate Binary Search Tree",
+    "title_cn": "验证二叉搜索树",
+    "slug": "validate-binary-search-tree",
+    "difficulty": "Medium",
+    "tags": [
+      "Tree",
+      "DFS",
+      "Binary Search Tree"
+    ],
+    "stage": "core",
+    "key_pattern": "递归传递节点允许的上下界，或中序遍历检查递增。",
+    "examples": [
+      {
+        "input": "root=[2,1,3]",
+        "output": "true"
+      }
+    ],
+    "recommended_order": 20,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/validate-binary-search-tree/",
+    "description": "判断一棵树是否满足二叉搜索树性质。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 21,
+    "leetcode_id": 235,
+    "title": "Lowest Common Ancestor of a BST",
+    "title_cn": "二叉搜索树的最近公共祖先",
+    "slug": "lowest-common-ancestor-of-a-binary-search-tree",
+    "difficulty": "Medium",
+    "tags": [
+      "Tree",
+      "Binary Search Tree"
+    ],
+    "stage": "core",
+    "key_pattern": "利用 BST 性质，两个值都小往左，都大往右，否则当前节点即答案。",
+    "examples": [
+      {
+        "input": "root=[6,2,8,0,4,7,9,null,null,3,5], p=2, q=8",
+        "output": "6"
+      }
+    ],
+    "recommended_order": 21,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/",
+    "description": "在二叉搜索树中找到两个节点的最近公共祖先。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 22,
+    "leetcode_id": 200,
+    "title": "Number of Islands",
+    "title_cn": "岛屿数量",
+    "slug": "number-of-islands",
+    "difficulty": "Medium",
+    "tags": [
+      "Matrix",
+      "DFS",
+      "BFS",
+      "Graph"
+    ],
+    "stage": "core",
+    "key_pattern": "遍历网格，遇到未访问陆地就 DFS/BFS 淹没整座岛。",
+    "examples": [
+      {
+        "input": "grid=[[1,1,0],[1,0,0],[0,0,1]]",
+        "output": "2"
+      }
+    ],
+    "recommended_order": 22,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/number-of-islands/",
+    "description": "计算二维网格中由陆地组成的连通块数量。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 23,
+    "leetcode_id": 733,
+    "title": "Flood Fill",
+    "title_cn": "图像渲染",
+    "slug": "flood-fill",
+    "difficulty": "Easy",
+    "tags": [
+      "Matrix",
+      "DFS",
+      "BFS"
+    ],
+    "stage": "core",
+    "key_pattern": "DFS/BFS 扩展四个方向，注意避免重复访问。",
+    "examples": [
+      {
+        "input": "image=[[1,1,1],[1,1,0],[1,0,1]], sr=1, sc=1, color=2",
+        "output": "[[2,2,2],[2,2,0],[2,0,1]]"
+      }
+    ],
+    "recommended_order": 23,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/flood-fill/",
+    "description": "从起点开始，将相连且颜色相同的区域替换为新颜色。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 24,
+    "leetcode_id": 70,
+    "title": "Climbing Stairs",
+    "title_cn": "爬楼梯",
+    "slug": "climbing-stairs",
+    "difficulty": "Easy",
+    "tags": [
+      "Dynamic Programming",
+      "Math"
+    ],
+    "stage": "advanced",
+    "key_pattern": "一维 DP，dp[i]=dp[i-1]+dp[i-2]。",
+    "examples": [
+      {
+        "input": "n=3",
+        "output": "3"
+      }
+    ],
+    "recommended_order": 24,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/climbing-stairs/",
+    "description": "每次可爬 1 或 2 阶，求到达顶部的方法数。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 25,
+    "leetcode_id": 198,
+    "title": "House Robber",
+    "title_cn": "打家劫舍",
+    "slug": "house-robber",
+    "difficulty": "Medium",
+    "tags": [
+      "Dynamic Programming",
+      "Array"
+    ],
+    "stage": "advanced",
+    "key_pattern": "dp[i]=max(dp[i-1], dp[i-2]+nums[i])。",
+    "examples": [
+      {
+        "input": "nums=[2,7,9,3,1]",
+        "output": "12"
+      }
+    ],
+    "recommended_order": 25,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/house-robber/",
+    "description": "不能偷相邻房屋，求能偷到的最大金额。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 26,
+    "leetcode_id": 322,
+    "title": "Coin Change",
+    "title_cn": "零钱兑换",
+    "slug": "coin-change",
+    "difficulty": "Medium",
+    "tags": [
+      "Dynamic Programming",
+      "BFS"
+    ],
+    "stage": "advanced",
+    "key_pattern": "完全背包 DP，初始化无穷大并逐步更新。",
+    "examples": [
+      {
+        "input": "coins=[1,2,5], amount=11",
+        "output": "3"
+      }
+    ],
+    "recommended_order": 26,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/coin-change/",
+    "description": "用给定硬币凑出目标金额，求最少硬币数。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 27,
+    "leetcode_id": 300,
+    "title": "Longest Increasing Subsequence",
+    "title_cn": "最长递增子序列",
+    "slug": "longest-increasing-subsequence",
+    "difficulty": "Medium",
+    "tags": [
+      "Dynamic Programming",
+      "Binary Search"
+    ],
+    "stage": "advanced",
+    "key_pattern": "DP O(n²) 或维护 tails 数组 + 二分 O(nlogn)。",
+    "examples": [
+      {
+        "input": "nums=[10,9,2,5,3,7,101,18]",
+        "output": "4"
+      }
+    ],
+    "recommended_order": 27,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/longest-increasing-subsequence/",
+    "description": "求数组中最长严格递增子序列长度。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 28,
+    "leetcode_id": 3,
+    "title": "Longest Substring Without Repeating Characters",
+    "title_cn": "无重复字符的最长子串",
+    "slug": "longest-substring-without-repeating-characters",
+    "difficulty": "Medium",
+    "tags": [
+      "String",
+      "Sliding Window",
+      "Hash Table"
+    ],
+    "stage": "core",
+    "key_pattern": "滑动窗口维护当前无重复区间，重复时移动左边界。",
+    "examples": [
+      {
+        "input": "s='abcabcbb'",
+        "output": "3"
+      }
+    ],
+    "recommended_order": 28,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/",
+    "description": "求不含重复字符的最长连续子串长度。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 29,
+    "leetcode_id": 567,
+    "title": "Permutation in String",
+    "title_cn": "字符串的排列",
+    "slug": "permutation-in-string",
+    "difficulty": "Medium",
+    "tags": [
+      "String",
+      "Sliding Window",
+      "Hash Table"
+    ],
+    "stage": "core",
+    "key_pattern": "固定长度滑动窗口比较字符频次。",
+    "examples": [
+      {
+        "input": "s1='ab', s2='eidbaooo'",
+        "output": "true"
+      }
+    ],
+    "recommended_order": 29,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/permutation-in-string/",
+    "description": "判断一个字符串是否包含另一个字符串的某个排列。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 30,
+    "leetcode_id": 15,
+    "title": "3Sum",
+    "title_cn": "三数之和",
+    "slug": "3sum",
+    "difficulty": "Medium",
+    "tags": [
+      "Array",
+      "Two Pointers",
+      "Sorting"
+    ],
+    "stage": "core",
+    "key_pattern": "排序后枚举第一个数，剩余部分用左右指针。",
+    "examples": [
+      {
+        "input": "nums=[-1,0,1,2,-1,-4]",
+        "output": "[[-1,-1,2],[-1,0,1]]"
+      }
+    ],
+    "recommended_order": 30,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/3sum/",
+    "description": "找出数组中所有不重复的三元组，使三数之和为 0。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 31,
+    "leetcode_id": 11,
+    "title": "Container With Most Water",
+    "title_cn": "盛最多水的容器",
+    "slug": "container-with-most-water",
+    "difficulty": "Medium",
+    "tags": [
+      "Array",
+      "Two Pointers",
+      "Greedy"
+    ],
+    "stage": "core",
+    "key_pattern": "左右指针从两端开始，每次移动较短的一边。",
+    "examples": [
+      {
+        "input": "height=[1,8,6,2,5,4,8,3,7]",
+        "output": "49"
+      }
+    ],
+    "recommended_order": 31,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/container-with-most-water/",
+    "description": "从高度数组中选择两条线，使容器装水最多。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 32,
+    "leetcode_id": 76,
+    "title": "Minimum Window Substring",
+    "title_cn": "最小覆盖子串",
+    "slug": "minimum-window-substring",
+    "difficulty": "Hard",
+    "tags": [
+      "String",
+      "Sliding Window",
+      "Hash Table"
+    ],
+    "stage": "advanced",
+    "key_pattern": "可变滑动窗口，右扩满足条件后左缩优化答案。",
+    "examples": [
+      {
+        "input": "s='ADOBECODEBANC', t='ABC'",
+        "output": "'BANC'"
+      }
+    ],
+    "recommended_order": 32,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/minimum-window-substring/",
+    "description": "在字符串中找到包含目标字符频次的最短窗口。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 33,
+    "leetcode_id": 33,
+    "title": "Search in Rotated Sorted Array",
+    "title_cn": "搜索旋转排序数组",
+    "slug": "search-in-rotated-sorted-array",
+    "difficulty": "Medium",
+    "tags": [
+      "Array",
+      "Binary Search"
+    ],
+    "stage": "core",
+    "key_pattern": "二分时判断哪一半有序，再决定缩小方向。",
+    "examples": [
+      {
+        "input": "nums=[4,5,6,7,0,1,2], target=0",
+        "output": "4"
+      }
+    ],
+    "recommended_order": 33,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/search-in-rotated-sorted-array/",
+    "description": "在旋转后的有序数组中查找目标值。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 34,
+    "leetcode_id": 153,
+    "title": "Find Minimum in Rotated Sorted Array",
+    "title_cn": "寻找旋转排序数组中的最小值",
+    "slug": "find-minimum-in-rotated-sorted-array",
+    "difficulty": "Medium",
+    "tags": [
+      "Array",
+      "Binary Search"
+    ],
+    "stage": "core",
+    "key_pattern": "比较 mid 与右端点，判断最小值在哪一侧。",
+    "examples": [
+      {
+        "input": "nums=[3,4,5,1,2]",
+        "output": "1"
+      }
+    ],
+    "recommended_order": 34,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/",
+    "description": "在旋转有序数组中找到最小元素。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 35,
+    "leetcode_id": 46,
+    "title": "Permutations",
+    "title_cn": "全排列",
+    "slug": "permutations",
+    "difficulty": "Medium",
+    "tags": [
+      "Backtracking",
+      "Array"
+    ],
+    "stage": "advanced",
+    "key_pattern": "回溯选择未使用元素，递归结束后撤销选择。",
+    "examples": [
+      {
+        "input": "nums=[1,2,3]",
+        "output": "所有排列"
+      }
+    ],
+    "recommended_order": 35,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/permutations/",
+    "description": "返回数组所有可能的排列。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 36,
+    "leetcode_id": 78,
+    "title": "Subsets",
+    "title_cn": "子集",
+    "slug": "subsets",
+    "difficulty": "Medium",
+    "tags": [
+      "Backtracking",
+      "Bit Manipulation"
+    ],
+    "stage": "advanced",
+    "key_pattern": "回溯每个位置选或不选，也可迭代扩展已有集合。",
+    "examples": [
+      {
+        "input": "nums=[1,2,3]",
+        "output": "所有子集"
+      }
+    ],
+    "recommended_order": 36,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/subsets/",
+    "description": "返回数组所有子集。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 37,
+    "leetcode_id": 39,
+    "title": "Combination Sum",
+    "title_cn": "组合总和",
+    "slug": "combination-sum",
+    "difficulty": "Medium",
+    "tags": [
+      "Backtracking",
+      "Array"
+    ],
+    "stage": "advanced",
+    "key_pattern": "回溯时传入起始下标，控制组合去重。",
+    "examples": [
+      {
+        "input": "candidates=[2,3,6,7], target=7",
+        "output": "[[2,2,3],[7]]"
+      }
+    ],
+    "recommended_order": 37,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/combination-sum/",
+    "description": "从候选数字中找出和为目标值的组合，数字可重复使用。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 38,
+    "leetcode_id": 49,
+    "title": "Group Anagrams",
+    "title_cn": "字母异位词分组",
+    "slug": "group-anagrams",
+    "difficulty": "Medium",
+    "tags": [
+      "Hash Table",
+      "String",
+      "Sorting"
+    ],
+    "stage": "core",
+    "key_pattern": "用排序后的字符串或字符频次数组作为哈希键。",
+    "examples": [
+      {
+        "input": "strs=['eat','tea','tan','ate','nat','bat']",
+        "output": "分组结果"
+      }
+    ],
+    "recommended_order": 38,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/group-anagrams/",
+    "description": "将互为字母异位词的字符串分到同一组。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 39,
+    "leetcode_id": 238,
+    "title": "Product of Array Except Self",
+    "title_cn": "除自身以外数组的乘积",
+    "slug": "product-of-array-except-self",
+    "difficulty": "Medium",
+    "tags": [
+      "Array",
+      "Prefix Product"
+    ],
+    "stage": "core",
+    "key_pattern": "前缀乘积和后缀乘积分别累计。",
+    "examples": [
+      {
+        "input": "nums=[1,2,3,4]",
+        "output": "[24,12,8,6]"
+      }
+    ],
+    "recommended_order": 39,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/product-of-array-except-self/",
+    "description": "返回每个位置除自身外其余元素的乘积，不能使用除法。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 40,
+    "leetcode_id": 347,
+    "title": "Top K Frequent Elements",
+    "title_cn": "前 K 个高频元素",
+    "slug": "top-k-frequent-elements",
+    "difficulty": "Medium",
+    "tags": [
+      "Hash Table",
+      "Heap",
+      "Bucket Sort"
+    ],
+    "stage": "core",
+    "key_pattern": "计数后用堆或桶排序找 Top K。",
+    "examples": [
+      {
+        "input": "nums=[1,1,1,2,2,3], k=2",
+        "output": "[1,2]"
+      }
+    ],
+    "recommended_order": 40,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/top-k-frequent-elements/",
+    "description": "返回数组中出现频率最高的 k 个元素。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 41,
+    "leetcode_id": 23,
+    "title": "Merge k Sorted Lists",
+    "title_cn": "合并 K 个升序链表",
+    "slug": "merge-k-sorted-lists",
+    "difficulty": "Hard",
+    "tags": [
+      "Linked List",
+      "Heap",
+      "Divide and Conquer"
+    ],
+    "stage": "advanced",
+    "key_pattern": "小根堆维护每个链表当前节点，或分治两两合并。",
+    "examples": [
+      {
+        "input": "lists=[[1,4,5],[1,3,4],[2,6]]",
+        "output": "[1,1,2,3,4,4,5,6]"
+      }
+    ],
+    "recommended_order": 41,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/merge-k-sorted-lists/",
+    "description": "合并多个升序链表为一个升序链表。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 42,
+    "leetcode_id": 295,
+    "title": "Find Median from Data Stream",
+    "title_cn": "数据流的中位数",
+    "slug": "find-median-from-data-stream",
+    "difficulty": "Hard",
+    "tags": [
+      "Heap",
+      "Design"
+    ],
+    "stage": "advanced",
+    "key_pattern": "一个大根堆维护较小一半，一个小根堆维护较大一半。",
+    "examples": [
+      {
+        "input": "addNum(1), addNum(2), findMedian(), addNum(3), findMedian()",
+        "output": "1.5, 2.0"
+      }
+    ],
+    "recommended_order": 42,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/find-median-from-data-stream/",
+    "description": "动态加入数字并随时查询当前中位数。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 43,
+    "leetcode_id": 207,
+    "title": "Course Schedule",
+    "title_cn": "课程表",
+    "slug": "course-schedule",
+    "difficulty": "Medium",
+    "tags": [
+      "Graph",
+      "Topological Sort",
+      "DFS",
+      "BFS"
+    ],
+    "stage": "advanced",
+    "key_pattern": "拓扑排序检测有向图是否存在环。",
+    "examples": [
+      {
+        "input": "numCourses=2, prerequisites=[[1,0]]",
+        "output": "true"
+      }
+    ],
+    "recommended_order": 43,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/course-schedule/",
+    "description": "判断是否能完成所有课程。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 44,
+    "leetcode_id": 210,
+    "title": "Course Schedule II",
+    "title_cn": "课程表 II",
+    "slug": "course-schedule-ii",
+    "difficulty": "Medium",
+    "tags": [
+      "Graph",
+      "Topological Sort",
+      "BFS"
+    ],
+    "stage": "advanced",
+    "key_pattern": "入度表 + 队列做拓扑排序。",
+    "examples": [
+      {
+        "input": "numCourses=2, prerequisites=[[1,0]]",
+        "output": "[0,1]"
+      }
+    ],
+    "recommended_order": 44,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/course-schedule-ii/",
+    "description": "返回一个可行的课程学习顺序。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 45,
+    "leetcode_id": 994,
+    "title": "Rotting Oranges",
+    "title_cn": "腐烂的橘子",
+    "slug": "rotting-oranges",
+    "difficulty": "Medium",
+    "tags": [
+      "Matrix",
+      "BFS"
+    ],
+    "stage": "core",
+    "key_pattern": "多源 BFS，从所有腐烂橘子同时扩散。",
+    "examples": [
+      {
+        "input": "grid=[[2,1,1],[1,1,0],[0,1,1]]",
+        "output": "4"
+      }
+    ],
+    "recommended_order": 45,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/rotting-oranges/",
+    "description": "腐烂橘子每分钟感染相邻新鲜橘子，求全部腐烂所需时间。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 46,
+    "leetcode_id": 139,
+    "title": "Word Break",
+    "title_cn": "单词拆分",
+    "slug": "word-break",
+    "difficulty": "Medium",
+    "tags": [
+      "Dynamic Programming",
+      "Trie",
+      "String"
+    ],
+    "stage": "advanced",
+    "key_pattern": "dp[i] 表示前 i 个字符能否被拆分。",
+    "examples": [
+      {
+        "input": "s='leetcode', wordDict=['leet','code']",
+        "output": "true"
+      }
+    ],
+    "recommended_order": 46,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/word-break/",
+    "description": "判断字符串能否由词典中的单词拼接而成。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 47,
+    "leetcode_id": 1143,
+    "title": "Longest Common Subsequence",
+    "title_cn": "最长公共子序列",
+    "slug": "longest-common-subsequence",
+    "difficulty": "Medium",
+    "tags": [
+      "Dynamic Programming",
+      "String"
+    ],
+    "stage": "advanced",
+    "key_pattern": "二维 DP，字符相等取左上 +1，否则取上/左最大。",
+    "examples": [
+      {
+        "input": "text1='abcde', text2='ace'",
+        "output": "3"
+      }
+    ],
+    "recommended_order": 47,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/longest-common-subsequence/",
+    "description": "求两个字符串的最长公共子序列长度。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 48,
+    "leetcode_id": 416,
+    "title": "Partition Equal Subset Sum",
+    "title_cn": "分割等和子集",
+    "slug": "partition-equal-subset-sum",
+    "difficulty": "Medium",
+    "tags": [
+      "Dynamic Programming",
+      "Knapsack"
+    ],
+    "stage": "advanced",
+    "key_pattern": "转换为 0/1 背包，是否能凑出总和的一半。",
+    "examples": [
+      {
+        "input": "nums=[1,5,11,5]",
+        "output": "true"
+      }
+    ],
+    "recommended_order": 48,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/partition-equal-subset-sum/",
+    "description": "判断数组能否分成两个和相等的子集。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 49,
+    "leetcode_id": 56,
+    "title": "Merge Intervals",
+    "title_cn": "合并区间",
+    "slug": "merge-intervals",
+    "difficulty": "Medium",
+    "tags": [
+      "Array",
+      "Sorting",
+      "Intervals"
+    ],
+    "stage": "core",
+    "key_pattern": "按左端点排序，逐个判断是否与当前区间重叠。",
+    "examples": [
+      {
+        "input": "intervals=[[1,3],[2,6],[8,10],[15,18]]",
+        "output": "[[1,6],[8,10],[15,18]]"
+      }
+    ],
+    "recommended_order": 49,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/merge-intervals/",
+    "description": "合并所有重叠区间。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  },
+  {
+    "id": 50,
+    "leetcode_id": 435,
+    "title": "Non-overlapping Intervals",
+    "title_cn": "无重叠区间",
+    "slug": "non-overlapping-intervals",
+    "difficulty": "Medium",
+    "tags": [
+      "Greedy",
+      "Sorting",
+      "Intervals"
+    ],
+    "stage": "advanced",
+    "key_pattern": "按右端点排序，贪心保留结束最早的区间。",
+    "examples": [
+      {
+        "input": "intervals=[[1,2],[2,3],[3,4],[1,3]]",
+        "output": "1"
+      }
+    ],
+    "recommended_order": 50,
+    "starter_code": {
+      "python": "def solve(*args):\n    # TODO: implement your solution\n    pass\n",
+      "java": "class Solution {\n    // TODO: implement your solution\n}\n",
+      "cpp": "#include <bits/stdc++.h>\nusing namespace std;\n\nclass Solution {\npublic:\n    // TODO: implement your solution\n};\n"
+    },
+    "source": "LeetCode / curated beginner roadmap",
+    "source_url": "https://leetcode.com/problems/non-overlapping-intervals/",
+    "description": "移除最少区间，使剩余区间互不重叠。",
+    "constraints_text": "请参考原题约束。本项目仅保存学习用简述，避免复制完整题面。"
+  }
+]

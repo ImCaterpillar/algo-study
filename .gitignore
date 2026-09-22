@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+*.db
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# OS
+.DS_Store
+
+# --- public-release safety ---
+node_modules/
+.next/
+.venv/
+venv/
+__pycache__/
+*.pyc
+.env
+.env.local
+.env.*.local
+*.log
+*.tsbuildinfo
+.coverage
+coverage/
+test-results/
+playwright-report/
+dist/
+.DS_Store
+Thumbs.db

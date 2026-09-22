@@ -1,0 +1,73 @@
+name: Verify AlgoStudy
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  backend-frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Check package sources
+        run: |
+          if grep -R "applied-caas\|internal.api.openai\|artifactory" -n frontend/package-lock.json frontend/.npmrc .npmrc 2>/dev/null; then
+            echo "Internal npm registry residue detected." >&2
+            exit 1
+          fi
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt -r requirements-dev.txt
+          pip install coverage pytest
+
+      - name: Verify backend (compile + smoke + regression + coverage)
+        working-directory: backend
+        env:
+          SECRET_KEY: ci-secret-key-for-tests-only
+        run: |
+          python -m compileall -q app
+          python smoke_test.py
+          python regression_test.py
+          python -m coverage run --source=app smoke_test.py
+          python -m coverage run --append --source=app regression_test.py
+          python -m coverage run --append --source=app -m pytest test_api_extended.py -q
+          python -m coverage report --fail-under=65
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci --registry=https://registry.npmjs.org/
+
+      - name: Install Playwright browsers
+        working-directory: frontend
+        run: npx playwright install --with-deps chromium
+
+      - name: Audit production frontend dependencies
+        working-directory: frontend
+        run: npm audit --omit=dev --registry=https://registry.npmjs.org/
+
+      - name: Build frontend
+        working-directory: frontend
+        run: npm run build
+
+      - name: Run frontend E2E tests (Playwright)
+        working-directory: frontend
+        env:
+          CI: 'true'
+        run: npx playwright test --reporter=line

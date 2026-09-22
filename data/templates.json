@@ -1,0 +1,332 @@
+[
+  {
+    "id": 1,
+    "name": "哈希表计数",
+    "category": "Hash Table",
+    "language": "python",
+    "code": "from collections import Counter\n\ndef count_items(nums):\n    freq = Counter(nums)\n    return freq\n",
+    "explanation": "把重复扫描转换成 O(1) 平均时间的查询。",
+    "tags": [
+      "Hash Table",
+      "Array",
+      "String"
+    ],
+    "usage_scenario": "频次统计、去重、快速查找补数或已访问状态"
+  },
+  {
+    "id": 2,
+    "name": "哈希表计数",
+    "category": "Hash Table",
+    "language": "java",
+    "code": "import java.util.*;\n\nMap<Integer, Integer> freq = new HashMap<>();\nfor (int x : nums) {\n    freq.put(x, freq.getOrDefault(x, 0) + 1);\n}\n",
+    "explanation": "把重复扫描转换成 O(1) 平均时间的查询。",
+    "tags": [
+      "Hash Table",
+      "Array",
+      "String"
+    ],
+    "usage_scenario": "频次统计、去重、快速查找补数或已访问状态"
+  },
+  {
+    "id": 3,
+    "name": "哈希表计数",
+    "category": "Hash Table",
+    "language": "cpp",
+    "code": "unordered_map<int, int> freq;\nfor (int x : nums) {\n    freq[x]++;\n}\n",
+    "explanation": "把重复扫描转换成 O(1) 平均时间的查询。",
+    "tags": [
+      "Hash Table",
+      "Array",
+      "String"
+    ],
+    "usage_scenario": "频次统计、去重、快速查找补数或已访问状态"
+  },
+  {
+    "id": 4,
+    "name": "左右双指针",
+    "category": "Two Pointers",
+    "language": "python",
+    "code": "left, right = 0, len(nums) - 1\nwhile left < right:\n    # compare / update answer\n    if need_move_left:\n        left += 1\n    else:\n        right -= 1\n",
+    "explanation": "左右指针从两端向中间移动，根据条件舍弃不可能区域。",
+    "tags": [
+      "Two Pointers",
+      "Array",
+      "String"
+    ],
+    "usage_scenario": "有序数组、回文判断、两端收缩类问题"
+  },
+  {
+    "id": 5,
+    "name": "左右双指针",
+    "category": "Two Pointers",
+    "language": "java",
+    "code": "int left = 0, right = nums.length - 1;\nwhile (left < right) {\n    // compare / update answer\n    if (needMoveLeft) left++;\n    else right--;\n}\n",
+    "explanation": "左右指针从两端向中间移动，根据条件舍弃不可能区域。",
+    "tags": [
+      "Two Pointers",
+      "Array",
+      "String"
+    ],
+    "usage_scenario": "有序数组、回文判断、两端收缩类问题"
+  },
+  {
+    "id": 6,
+    "name": "左右双指针",
+    "category": "Two Pointers",
+    "language": "cpp",
+    "code": "int left = 0, right = (int)nums.size() - 1;\nwhile (left < right) {\n    // compare / update answer\n    if (needMoveLeft) left++;\n    else right--;\n}\n",
+    "explanation": "左右指针从两端向中间移动，根据条件舍弃不可能区域。",
+    "tags": [
+      "Two Pointers",
+      "Array",
+      "String"
+    ],
+    "usage_scenario": "有序数组、回文判断、两端收缩类问题"
+  },
+  {
+    "id": 7,
+    "name": "滑动窗口",
+    "category": "Sliding Window",
+    "language": "python",
+    "code": "left = 0\nwindow = {}\nfor right, ch in enumerate(s):\n    window[ch] = window.get(ch, 0) + 1\n    while need_shrink(window):\n        old = s[left]\n        window[old] -= 1\n        left += 1\n    # update answer with [left, right]\n",
+    "explanation": "维护一个动态区间，右端扩张，条件满足或不满足时调整左端。",
+    "tags": [
+      "Sliding Window",
+      "String",
+      "Array"
+    ],
+    "usage_scenario": "连续子数组/子串、最长/最短窗口、固定长度窗口"
+  },
+  {
+    "id": 8,
+    "name": "滑动窗口",
+    "category": "Sliding Window",
+    "language": "java",
+    "code": "int left = 0;\nMap<Character, Integer> window = new HashMap<>();\nfor (int right = 0; right < s.length(); right++) {\n    char c = s.charAt(right);\n    window.put(c, window.getOrDefault(c, 0) + 1);\n    while (needShrink(window)) {\n        char old = s.charAt(left++);\n        window.put(old, window.get(old) - 1);\n    }\n}\n",
+    "explanation": "维护一个动态区间，右端扩张，条件满足或不满足时调整左端。",
+    "tags": [
+      "Sliding Window",
+      "String",
+      "Array"
+    ],
+    "usage_scenario": "连续子数组/子串、最长/最短窗口、固定长度窗口"
+  },
+  {
+    "id": 9,
+    "name": "滑动窗口",
+    "category": "Sliding Window",
+    "language": "cpp",
+    "code": "int left = 0;\nunordered_map<char, int> window;\nfor (int right = 0; right < s.size(); right++) {\n    window[s[right]]++;\n    while (needShrink(window)) {\n        window[s[left]]--;\n        left++;\n    }\n}\n",
+    "explanation": "维护一个动态区间，右端扩张，条件满足或不满足时调整左端。",
+    "tags": [
+      "Sliding Window",
+      "String",
+      "Array"
+    ],
+    "usage_scenario": "连续子数组/子串、最长/最短窗口、固定长度窗口"
+  },
+  {
+    "id": 10,
+    "name": "二分查找",
+    "category": "Binary Search",
+    "language": "python",
+    "code": "left, right = 0, len(nums) - 1\nwhile left <= right:\n    mid = left + (right - left) // 2\n    if nums[mid] == target:\n        return mid\n    elif nums[mid] < target:\n        left = mid + 1\n    else:\n        right = mid - 1\nreturn -1\n",
+    "explanation": "每次根据单调性丢弃一半候选范围。",
+    "tags": [
+      "Binary Search",
+      "Array"
+    ],
+    "usage_scenario": "有序数组、答案具有单调性的问题"
+  },
+  {
+    "id": 11,
+    "name": "二分查找",
+    "category": "Binary Search",
+    "language": "java",
+    "code": "int left = 0, right = nums.length - 1;\nwhile (left <= right) {\n    int mid = left + (right - left) / 2;\n    if (nums[mid] == target) return mid;\n    if (nums[mid] < target) left = mid + 1;\n    else right = mid - 1;\n}\nreturn -1;\n",
+    "explanation": "每次根据单调性丢弃一半候选范围。",
+    "tags": [
+      "Binary Search",
+      "Array"
+    ],
+    "usage_scenario": "有序数组、答案具有单调性的问题"
+  },
+  {
+    "id": 12,
+    "name": "二分查找",
+    "category": "Binary Search",
+    "language": "cpp",
+    "code": "int left = 0, right = nums.size() - 1;\nwhile (left <= right) {\n    int mid = left + (right - left) / 2;\n    if (nums[mid] == target) return mid;\n    if (nums[mid] < target) left = mid + 1;\n    else right = mid - 1;\n}\nreturn -1;\n",
+    "explanation": "每次根据单调性丢弃一半候选范围。",
+    "tags": [
+      "Binary Search",
+      "Array"
+    ],
+    "usage_scenario": "有序数组、答案具有单调性的问题"
+  },
+  {
+    "id": 13,
+    "name": "BFS 队列",
+    "category": "BFS",
+    "language": "python",
+    "code": "from collections import deque\n\nq = deque([start])\nvisited = {start}\nwhile q:\n    node = q.popleft()\n    for nxt in neighbors(node):\n        if nxt not in visited:\n            visited.add(nxt)\n            q.append(nxt)\n",
+    "explanation": "使用队列按层扩展，适合求最短步数。",
+    "tags": [
+      "BFS",
+      "Tree",
+      "Graph",
+      "Matrix"
+    ],
+    "usage_scenario": "最短路径、层序遍历、多源扩散"
+  },
+  {
+    "id": 14,
+    "name": "BFS 队列",
+    "category": "BFS",
+    "language": "java",
+    "code": "Queue<Integer> queue = new LinkedList<>();\nSet<Integer> visited = new HashSet<>();\nqueue.offer(start);\nvisited.add(start);\nwhile (!queue.isEmpty()) {\n    int node = queue.poll();\n    for (int next : neighbors(node)) {\n        if (visited.add(next)) queue.offer(next);\n    }\n}\n",
+    "explanation": "使用队列按层扩展，适合求最短步数。",
+    "tags": [
+      "BFS",
+      "Tree",
+      "Graph",
+      "Matrix"
+    ],
+    "usage_scenario": "最短路径、层序遍历、多源扩散"
+  },
+  {
+    "id": 15,
+    "name": "BFS 队列",
+    "category": "BFS",
+    "language": "cpp",
+    "code": "queue<int> q;\nunordered_set<int> visited;\nq.push(start);\nvisited.insert(start);\nwhile (!q.empty()) {\n    int node = q.front(); q.pop();\n    for (int nxt : neighbors(node)) {\n        if (!visited.count(nxt)) {\n            visited.insert(nxt);\n            q.push(nxt);\n        }\n    }\n}\n",
+    "explanation": "使用队列按层扩展，适合求最短步数。",
+    "tags": [
+      "BFS",
+      "Tree",
+      "Graph",
+      "Matrix"
+    ],
+    "usage_scenario": "最短路径、层序遍历、多源扩散"
+  },
+  {
+    "id": 16,
+    "name": "DFS 递归",
+    "category": "DFS",
+    "language": "python",
+    "code": "def dfs(node):\n    if not node:\n        return\n    # process node\n    dfs(node.left)\n    dfs(node.right)\n",
+    "explanation": "递归深入一个方向，再回退探索其他方向。",
+    "tags": [
+      "DFS",
+      "Tree",
+      "Graph",
+      "Matrix"
+    ],
+    "usage_scenario": "连通块、树遍历、路径搜索"
+  },
+  {
+    "id": 17,
+    "name": "DFS 递归",
+    "category": "DFS",
+    "language": "java",
+    "code": "void dfs(TreeNode node) {\n    if (node == null) return;\n    // process node\n    dfs(node.left);\n    dfs(node.right);\n}\n",
+    "explanation": "递归深入一个方向，再回退探索其他方向。",
+    "tags": [
+      "DFS",
+      "Tree",
+      "Graph",
+      "Matrix"
+    ],
+    "usage_scenario": "连通块、树遍历、路径搜索"
+  },
+  {
+    "id": 18,
+    "name": "DFS 递归",
+    "category": "DFS",
+    "language": "cpp",
+    "code": "void dfs(TreeNode* node) {\n    if (!node) return;\n    // process node\n    dfs(node->left);\n    dfs(node->right);\n}\n",
+    "explanation": "递归深入一个方向，再回退探索其他方向。",
+    "tags": [
+      "DFS",
+      "Tree",
+      "Graph",
+      "Matrix"
+    ],
+    "usage_scenario": "连通块、树遍历、路径搜索"
+  },
+  {
+    "id": 19,
+    "name": "回溯框架",
+    "category": "Backtracking",
+    "language": "python",
+    "code": "path = []\nres = []\n\ndef backtrack(start):\n    res.append(path[:])\n    for i in range(start, len(nums)):\n        path.append(nums[i])\n        backtrack(i + 1)\n        path.pop()\n",
+    "explanation": "选择、递归、撤销选择，系统遍历解空间。",
+    "tags": [
+      "Backtracking",
+      "DFS"
+    ],
+    "usage_scenario": "排列、组合、子集、搜索所有方案"
+  },
+  {
+    "id": 20,
+    "name": "回溯框架",
+    "category": "Backtracking",
+    "language": "java",
+    "code": "void backtrack(int start, List<Integer> path, List<List<Integer>> res) {\n    res.add(new ArrayList<>(path));\n    for (int i = start; i < nums.length; i++) {\n        path.add(nums[i]);\n        backtrack(i + 1, path, res);\n        path.remove(path.size() - 1);\n    }\n}\n",
+    "explanation": "选择、递归、撤销选择，系统遍历解空间。",
+    "tags": [
+      "Backtracking",
+      "DFS"
+    ],
+    "usage_scenario": "排列、组合、子集、搜索所有方案"
+  },
+  {
+    "id": 21,
+    "name": "回溯框架",
+    "category": "Backtracking",
+    "language": "cpp",
+    "code": "void backtrack(int start, vector<int>& path, vector<vector<int>>& res) {\n    res.push_back(path);\n    for (int i = start; i < nums.size(); i++) {\n        path.push_back(nums[i]);\n        backtrack(i + 1, path, res);\n        path.pop_back();\n    }\n}\n",
+    "explanation": "选择、递归、撤销选择，系统遍历解空间。",
+    "tags": [
+      "Backtracking",
+      "DFS"
+    ],
+    "usage_scenario": "排列、组合、子集、搜索所有方案"
+  },
+  {
+    "id": 22,
+    "name": "一维 DP",
+    "category": "Dynamic Programming",
+    "language": "python",
+    "code": "dp = [0] * (n + 1)\ndp[0] = 1\nfor i in range(1, n + 1):\n    # dp[i] = transition from previous states\n    pass\n",
+    "explanation": "定义状态，找转移，确定初始化和遍历顺序。",
+    "tags": [
+      "Dynamic Programming"
+    ],
+    "usage_scenario": "爬楼梯、打家劫舍、子序列、背包简化版"
+  },
+  {
+    "id": 23,
+    "name": "一维 DP",
+    "category": "Dynamic Programming",
+    "language": "java",
+    "code": "int[] dp = new int[n + 1];\ndp[0] = 1;\nfor (int i = 1; i <= n; i++) {\n    // dp[i] = transition from previous states\n}\n",
+    "explanation": "定义状态，找转移，确定初始化和遍历顺序。",
+    "tags": [
+      "Dynamic Programming"
+    ],
+    "usage_scenario": "爬楼梯、打家劫舍、子序列、背包简化版"
+  },
+  {
+    "id": 24,
+    "name": "一维 DP",
+    "category": "Dynamic Programming",
+    "language": "cpp",
+    "code": "vector<int> dp(n + 1, 0);\ndp[0] = 1;\nfor (int i = 1; i <= n; i++) {\n    // dp[i] = transition from previous states\n}\n",
+    "explanation": "定义状态，找转移，确定初始化和遍历顺序。",
+    "tags": [
+      "Dynamic Programming"
+    ],
+    "usage_scenario": "爬楼梯、打家劫舍、子序列、背包简化版"
+  }
+]
