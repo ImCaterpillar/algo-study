@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
-from sqlalchemy.orm import Session, joinedload
-from ..models import Problem, Progress, ReviewLog, Submission
+from sqlalchemy.orm import Session
+from ..models import Problem, Progress, ReviewLog
 
 INTERVALS = {
     0: 1,

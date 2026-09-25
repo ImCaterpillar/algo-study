@@ -33,6 +33,7 @@ cd "$ROOT_DIR/backend"
 "$PYTHON_BIN" -m compileall -q app
 "$PYTHON_BIN" smoke_test.py
 "$PYTHON_BIN" regression_test.py
+"$PYTHON_BIN" -m pytest test_api_extended.py test_password_hashing.py test_sandbox_security.py -q
 
 cd "$ROOT_DIR/frontend"
 npm config set registry "$NPM_REGISTRY"

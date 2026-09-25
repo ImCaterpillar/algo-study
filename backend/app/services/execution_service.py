@@ -1,8 +1,36 @@
-import subprocess
-import tempfile
+"""Single-language quick execution service (the ``/api/execute`` endpoint).
+
+Like :mod:`app.services.sandbox_service`, every child is launched through
+:mod:`app.services.sandbox_runner`, so the environment whitelist, the throwaway
+working directory and the whole-process-tree timeout kill all apply. Read the
+security model at the top of that module before changing anything here -- this is
+a **local demo sandbox**, not an isolation boundary, and must not be exposed to
+untrusted users.
+"""
+from __future__ import annotations
+
 import os
-import time
+import tempfile
 from dataclasses import dataclass
+
+from .sandbox_runner import (
+    DEFAULT_TIMEOUT,
+    MAX_OUTPUT_SIZE,
+    python_argv,
+    run_sandboxed,
+)
+
+__all__ = [
+    "DEFAULT_TIMEOUT",
+    "MAX_OUTPUT_SIZE",
+    "ExecutionResult",
+    "execute_code",
+    "execute_cpp",
+    "execute_java",
+    "execute_javascript",
+    "execute_python",
+]
+
 
 @dataclass
 class ExecutionResult:
@@ -10,163 +38,216 @@ class ExecutionResult:
     output: str
     error: str
     runtime_ms: int
+    # Always 0.0: this service does not measure or limit memory. See the note in
+    # app/services/sandbox_runner.py on why a setrlimit-based cap is not used.
     memory_mb: float
     status: str
 
-DEFAULT_TIMEOUT = 10
-MAX_OUTPUT_SIZE = 1024 * 1024
 
-def execute_python(code: str, stdin: str = "", timeout: int = DEFAULT_TIMEOUT) -> ExecutionResult:
-    start = time.time()
+def _checked_write(path: str, code: str) -> None:
+    """Refuse to follow a symlink out of the sandbox when writing user code."""
+    if os.path.islink(path):
+        raise RuntimeError("sandbox file path was replaced by a symlink")
+    with open(path, "w", encoding="utf-8") as handle:
+        handle.write(code)
+
+
+def execute_python(
+    code: str, stdin: str = "", timeout: int = DEFAULT_TIMEOUT
+) -> ExecutionResult:
     try:
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.py', delete=False, encoding='utf-8') as f:
-            f.write(code)
-            temp_path = f.name
-        try:
-            result = subprocess.run(
-                ['python', temp_path],
-                input=stdin,
-                capture_output=True,
-                text=True,
+        with tempfile.TemporaryDirectory(prefix="algo_exec_") as tmpdir:
+            script = os.path.join(tmpdir, "main.py")
+            _checked_write(script, code)
+
+            result = run_sandboxed(
+                python_argv(script),
+                workdir=tmpdir,
+                stdin_text=stdin,
                 timeout=timeout,
             )
-            elapsed = int((time.time() - start) * 1000)
+            if result.timed_out:
+                return ExecutionResult(
+                    False, "", "Time Limit Exceeded", result.elapsed_ms, 0, "Timeout"
+                )
             if result.returncode == 0:
-                return ExecutionResult(True, (result.stdout or "")[:MAX_OUTPUT_SIZE], "", elapsed, 0, "Accepted")
-            else:
-                return ExecutionResult(False, (result.stdout or "")[:MAX_OUTPUT_SIZE], (result.stderr or "")[:MAX_OUTPUT_SIZE], elapsed, 0, "Runtime Error")
-        finally:
-            os.unlink(temp_path)
-    except subprocess.TimeoutExpired:
-        elapsed = int((time.time() - start) * 1000)
-        return ExecutionResult(False, "", "Time Limit Exceeded", elapsed, 0, "Timeout")
-    except Exception as e:
-        elapsed = int((time.time() - start) * 1000)
-        return ExecutionResult(False, "", str(e), elapsed, 0, "Error")
-
-def execute_javascript(code: str, stdin: str = "", timeout: int = DEFAULT_TIMEOUT) -> ExecutionResult:
-    start = time.time()
-    try:
-        with tempfile.NamedTemporaryFile(mode='w', suffix='.js', delete=False, encoding='utf-8') as f:
-            f.write(code)
-            temp_path = f.name
-        try:
-            result = subprocess.run(
-                ['node', temp_path],
-                input=stdin,
-                capture_output=True,
-                text=True,
-                timeout=timeout,
+                return ExecutionResult(
+                    True, result.stdout, "", result.elapsed_ms, 0, "Accepted"
+                )
+            return ExecutionResult(
+                False,
+                result.stdout,
+                result.stderr,
+                result.elapsed_ms,
+                0,
+                "Runtime Error",
             )
-            elapsed = int((time.time() - start) * 1000)
-            if result.returncode == 0:
-                return ExecutionResult(True, (result.stdout or "")[:MAX_OUTPUT_SIZE], "", elapsed, 0, "Accepted")
-            else:
-                return ExecutionResult(False, (result.stdout or "")[:MAX_OUTPUT_SIZE], (result.stderr or "")[:MAX_OUTPUT_SIZE], elapsed, 0, "Runtime Error")
-        finally:
-            os.unlink(temp_path)
-    except subprocess.TimeoutExpired:
-        elapsed = int((time.time() - start) * 1000)
-        return ExecutionResult(False, "", "Time Limit Exceeded", elapsed, 0, "Timeout")
     except FileNotFoundError:
-        elapsed = int((time.time() - start) * 1000)
-        return ExecutionResult(False, "", "Node.js not installed", elapsed, 0, "Error")
-    except Exception as e:
-        elapsed = int((time.time() - start) * 1000)
-        return ExecutionResult(False, "", str(e), elapsed, 0, "Error")
+        return ExecutionResult(
+            False, "", "Python interpreter not installed", 0, 0, "Error"
+        )
+    except Exception as exc:  # noqa: BLE001 - surface any failure to the caller
+        return ExecutionResult(False, "", str(exc), 0, 0, "Error")
 
-def execute_java(code: str, stdin: str = "", timeout: int = DEFAULT_TIMEOUT) -> ExecutionResult:
-    start = time.time()
+
+def execute_javascript(
+    code: str, stdin: str = "", timeout: int = DEFAULT_TIMEOUT
+) -> ExecutionResult:
     try:
-        with tempfile.TemporaryDirectory() as tmpdir:
+        with tempfile.TemporaryDirectory(prefix="algo_exec_") as tmpdir:
+            script = os.path.join(tmpdir, "main.js")
+            _checked_write(script, code)
+
+            result = run_sandboxed(
+                ["node", script], workdir=tmpdir, stdin_text=stdin, timeout=timeout
+            )
+            if result.timed_out:
+                return ExecutionResult(
+                    False, "", "Time Limit Exceeded", result.elapsed_ms, 0, "Timeout"
+                )
+            if result.returncode == 0:
+                return ExecutionResult(
+                    True, result.stdout, "", result.elapsed_ms, 0, "Accepted"
+                )
+            return ExecutionResult(
+                False,
+                result.stdout,
+                result.stderr,
+                result.elapsed_ms,
+                0,
+                "Runtime Error",
+            )
+    except FileNotFoundError:
+        return ExecutionResult(False, "", "Node.js not installed", 0, 0, "Error")
+    except Exception as exc:  # noqa: BLE001
+        return ExecutionResult(False, "", str(exc), 0, 0, "Error")
+
+
+def execute_java(
+    code: str, stdin: str = "", timeout: int = DEFAULT_TIMEOUT
+) -> ExecutionResult:
+    try:
+        with tempfile.TemporaryDirectory(prefix="algo_exec_") as tmpdir:
             class_name = "Main"
             java_file = os.path.join(tmpdir, f"{class_name}.java")
-            with open(java_file, 'w', encoding='utf-8') as f:
-                f.write(code)
-            compile_result = subprocess.run(
-                ['javac', java_file],
-                capture_output=True,
-                text=True,
-                timeout=timeout,
+            _checked_write(java_file, code)
+
+            compile_result = run_sandboxed(
+                ["javac", java_file], workdir=tmpdir, timeout=timeout
             )
+            if compile_result.timed_out:
+                return ExecutionResult(
+                    False, "", "Time Limit Exceeded", compile_result.elapsed_ms, 0,
+                    "Timeout",
+                )
             if compile_result.returncode != 0:
-                elapsed = int((time.time() - start) * 1000)
-                return ExecutionResult(False, "", (compile_result.stderr or "")[:MAX_OUTPUT_SIZE], elapsed, 0, "Compile Error")
+                return ExecutionResult(
+                    False, "", compile_result.stderr, compile_result.elapsed_ms, 0,
+                    "Compile Error",
+                )
+
             class_file = os.path.join(tmpdir, f"{class_name}.class")
             if not os.path.exists(class_file):
-                return ExecutionResult(False, "", "Compilation failed", int((time.time() - start) * 1000), 0, "Compile Error")
-            result = subprocess.run(
-                ['java', '-cp', tmpdir, class_name],
-                input=stdin,
-                capture_output=True,
-                text=True,
+                return ExecutionResult(
+                    False, "", "Compilation failed", compile_result.elapsed_ms, 0,
+                    "Compile Error",
+                )
+
+            result = run_sandboxed(
+                ["java", "-cp", tmpdir, class_name],
+                workdir=tmpdir,
+                stdin_text=stdin,
                 timeout=timeout,
             )
-            elapsed = int((time.time() - start) * 1000)
+            if result.timed_out:
+                return ExecutionResult(
+                    False, "", "Time Limit Exceeded", result.elapsed_ms, 0, "Timeout"
+                )
             if result.returncode == 0:
-                return ExecutionResult(True, (result.stdout or "")[:MAX_OUTPUT_SIZE], "", elapsed, 0, "Accepted")
-            else:
-                return ExecutionResult(False, (result.stdout or "")[:MAX_OUTPUT_SIZE], (result.stderr or "")[:MAX_OUTPUT_SIZE], elapsed, 0, "Runtime Error")
-    except subprocess.TimeoutExpired:
-        elapsed = int((time.time() - start) * 1000)
-        return ExecutionResult(False, "", "Time Limit Exceeded", elapsed, 0, "Timeout")
-    except FileNotFoundError as e:
-        elapsed = int((time.time() - start) * 1000)
-        return ExecutionResult(False, "", f"{str(e)}. Please install JDK.", elapsed, 0, "Error")
-    except Exception as e:
-        elapsed = int((time.time() - start) * 1000)
-        return ExecutionResult(False, "", str(e), elapsed, 0, "Error")
+                return ExecutionResult(
+                    True, result.stdout, "", result.elapsed_ms, 0, "Accepted"
+                )
+            return ExecutionResult(
+                False,
+                result.stdout,
+                result.stderr,
+                result.elapsed_ms,
+                0,
+                "Runtime Error",
+            )
+    except FileNotFoundError as exc:
+        return ExecutionResult(False, "", f"{exc}. Please install JDK.", 0, 0, "Error")
+    except Exception as exc:  # noqa: BLE001
+        return ExecutionResult(False, "", str(exc), 0, 0, "Error")
 
-def execute_cpp(code: str, stdin: str = "", timeout: int = DEFAULT_TIMEOUT) -> ExecutionResult:
-    start = time.time()
+
+def execute_cpp(
+    code: str, stdin: str = "", timeout: int = DEFAULT_TIMEOUT
+) -> ExecutionResult:
     try:
-        with tempfile.TemporaryDirectory() as tmpdir:
+        with tempfile.TemporaryDirectory(prefix="algo_exec_") as tmpdir:
             cpp_file = os.path.join(tmpdir, "main.cpp")
             exe_file = os.path.join(tmpdir, "main.exe")
-            with open(cpp_file, 'w', encoding='utf-8') as f:
-                f.write(code)
-            compile_result = subprocess.run(
-                ['g++', cpp_file, '-o', exe_file, '-std=c++17'],
-                capture_output=True,
-                text=True,
-                timeout=timeout,
-            )
-            if compile_result.returncode != 0:
-                elapsed = int((time.time() - start) * 1000)
-                return ExecutionResult(False, "", (compile_result.stderr or "")[:MAX_OUTPUT_SIZE], elapsed, 0, "Compile Error")
-            if not os.path.exists(exe_file):
-                return ExecutionResult(False, "", "Compilation failed", int((time.time() - start) * 1000), 0, "Compile Error")
-            result = subprocess.run(
-                [exe_file],
-                input=stdin,
-                capture_output=True,
-                text=True,
-                timeout=timeout,
-            )
-            elapsed = int((time.time() - start) * 1000)
-            if result.returncode == 0:
-                return ExecutionResult(True, (result.stdout or "")[:MAX_OUTPUT_SIZE], "", elapsed, 0, "Accepted")
-            else:
-                return ExecutionResult(False, (result.stdout or "")[:MAX_OUTPUT_SIZE], (result.stderr or "")[:MAX_OUTPUT_SIZE], elapsed, 0, "Runtime Error")
-    except subprocess.TimeoutExpired:
-        elapsed = int((time.time() - start) * 1000)
-        return ExecutionResult(False, "", "Time Limit Exceeded", elapsed, 0, "Timeout")
-    except FileNotFoundError as e:
-        elapsed = int((time.time() - start) * 1000)
-        return ExecutionResult(False, "", f"{str(e)}. Please install MinGW/GCC.", elapsed, 0, "Error")
-    except Exception as e:
-        elapsed = int((time.time() - start) * 1000)
-        return ExecutionResult(False, "", str(e), elapsed, 0, "Error")
+            _checked_write(cpp_file, code)
 
-def execute_code(language: str, code: str, stdin: str = "", timeout: int = DEFAULT_TIMEOUT) -> ExecutionResult:
-    lang = language.lower()
+            compile_result = run_sandboxed(
+                ["g++", cpp_file, "-o", exe_file, "-std=c++17"],
+                workdir=tmpdir,
+                timeout=timeout,
+            )
+            if compile_result.timed_out:
+                return ExecutionResult(
+                    False, "", "Time Limit Exceeded", compile_result.elapsed_ms, 0,
+                    "Timeout",
+                )
+            if compile_result.returncode != 0:
+                return ExecutionResult(
+                    False, "", compile_result.stderr, compile_result.elapsed_ms, 0,
+                    "Compile Error",
+                )
+            if not os.path.exists(exe_file):
+                return ExecutionResult(
+                    False, "", "Compilation failed", compile_result.elapsed_ms, 0,
+                    "Compile Error",
+                )
+
+            result = run_sandboxed(
+                [exe_file], workdir=tmpdir, stdin_text=stdin, timeout=timeout
+            )
+            if result.timed_out:
+                return ExecutionResult(
+                    False, "", "Time Limit Exceeded", result.elapsed_ms, 0, "Timeout"
+                )
+            if result.returncode == 0:
+                return ExecutionResult(
+                    True, result.stdout, "", result.elapsed_ms, 0, "Accepted"
+                )
+            return ExecutionResult(
+                False,
+                result.stdout,
+                result.stderr,
+                result.elapsed_ms,
+                0,
+                "Runtime Error",
+            )
+    except FileNotFoundError as exc:
+        return ExecutionResult(
+            False, "", f"{exc}. Please install MinGW/GCC.", 0, 0, "Error"
+        )
+    except Exception as exc:  # noqa: BLE001
+        return ExecutionResult(False, "", str(exc), 0, 0, "Error")
+
+
+def execute_code(
+    language: str, code: str, stdin: str = "", timeout: int = DEFAULT_TIMEOUT
+) -> ExecutionResult:
+    lang = (language or "").lower()
     if lang == "python":
         return execute_python(code, stdin, timeout)
-    elif lang == "javascript":
+    if lang == "javascript":
         return execute_javascript(code, stdin, timeout)
-    elif lang == "java":
+    if lang == "java":
         return execute_java(code, stdin, timeout)
-    elif lang == "cpp":
+    if lang == "cpp":
         return execute_cpp(code, stdin, timeout)
-    else:
-        return ExecutionResult(False, "", f"Unsupported language: {language}", 0, 0, "Error")
+    return ExecutionResult(False, "", f"Unsupported language: {language}", 0, 0, "Error")

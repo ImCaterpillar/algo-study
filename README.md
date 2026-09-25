@@ -1,5 +1,8 @@
 # AlgoStudy
 
+[![CI](https://github.com/ImCaterpillar/algo-study/actions/workflows/ci.yml/badge.svg)](https://github.com/ImCaterpillar/algo-study/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 AlgoStudy 是一个个人算法学习与刷题复盘系统，包含题库路线、题目详情、代码编辑与执行、提交记录、笔记、掌握度、间隔复习、弱项分析、个性化推荐、周报、模板库、AI 辅助提示和轻量沙箱执行。
 
 ## 功能概览
@@ -134,22 +137,23 @@ python smoke_test.py
 python regression_test.py
 ```
 
-扩展接口回归测试（覆盖笔记 CRUD、模板全权限矩阵、题目筛选、统计与执行接口）：
+接口与安全回归测试（覆盖笔记 CRUD、模板全权限矩阵、题目筛选、统计与执行接口、
+密码哈希兼容性、沙箱环境隔离与超时击杀）：
 
 ```bash
 cd backend
-python -m pytest test_api_extended.py -q
+python -m pytest test_api_extended.py test_password_hashing.py test_sandbox_security.py -q
 ```
 
-后端覆盖率统计（smoke + regression + extended 合并）：
+后端覆盖率统计（smoke + regression + pytest 合并）：
 
 ```bash
 cd backend
 python -m coverage run --source=app smoke_test.py
 python -m coverage run --append --source=app regression_test.py
-python -m coverage run --append --source=app -m pytest test_api_extended.py -q
+python -m coverage run --append --source=app -m pytest test_api_extended.py test_password_hashing.py test_sandbox_security.py -q
 python -m coverage report --fail-under=65
-# 当前实测：核心路由 84%~100%，总计约 71%（HTML 报告：coverage_html/index.html）
+# 当前实测：总计约 74%（门槛 65%；HTML 报告：coverage_html/index.html）
 ```
 
 前端安全检查与生产构建：
@@ -301,11 +305,14 @@ uvicorn app.main:app --reload
 - `docs/DATABASE_SCHEMA.md`：数据库表结构说明
 - `docs/API_CONTRACT.md`：主要 API 返回结构与分页约定
 - `docs/DEPLOYMENT.md`：Docker Compose、Windows `.cmd` / PowerShell 与本地一键部署说明
+- `docs/SECURITY.md`：沙箱安全边界、依赖漏洞处置记录（python-jose CVE、passlib 移除）与待办风险
 - `PROJECT_PLANNING.md` / `docs/PROJECT_PLAN.md`：完整项目规划、版本路线图、功能蓝图与验收标准
 
 ## 安全提示
 
-代码执行功能适合本地学习场景。`/api/sandbox/execute` 已加入登录鉴权、临时目录、超时限制和输出长度限制，并可通过 `CODE_EXECUTION_ENABLED=false` 一键关闭，但仍不是生产级容器隔离。不要直接暴露到公网；如需线上使用，应改造成容器 / 微虚拟机隔离执行，并增加限流、审计和资源配额。
+代码执行功能适合本地学习场景。`/api/sandbox/execute` 与 `/api/execute` 已加入登录鉴权、**子进程环境变量白名单**（子进程看不到 `SECRET_KEY` / `DATABASE_URL` / `*_API_KEY` 等服务器密钥）、一次性临时工作目录（并重定向 `HOME` / `TEMP` / `TMP`）、**整棵进程树的超时击杀**和输出长度限制，并可通过 `CODE_EXECUTION_ENABLED=false` 一键关闭。
+
+**这仍不是生产级隔离，也不是"有内存限制"的沙箱**：没有内存 / CPU 配额、没有网络隔离、没有系统调用过滤，提交代码仍可读取服务器用户有权读取的文件。不要直接暴露到公网；如需线上使用，应替换为 gVisor / Firecracker microVM / 一次性容器等真正的隔离方案，并增加限流、审计和资源配额。完整的边界说明、依赖漏洞（python-jose CVE-2024-33663 / CVE-2024-33664、passlib 停止维护）处置记录与待办风险见 `docs/SECURITY.md`。
 
 ## 当前验证状态
 
@@ -321,3 +328,4 @@ uvicorn app.main:app --reload
 - 第四轮新增验证：dashboard 薄弱标签明细、AI 请求长度校验、提交分页、迁移版本标记、题库 / 模板库加载更多
 - 第五轮新增验证：统一分页响应结构、健康检查接口、用户名大小写无关登录 / 防重复、CI 配置和一键验证脚本
 - 第六轮新增验证：Docker Compose 部署文件、一键部署脚本、本地启动脚本和部署文档
+- 第七轮安全与质量改进：沙箱加固（子进程环境变量白名单、临时目录重定向、整棵进程树的超时击杀、移除失效的内存上限死代码）、python-jose 升级至 3.5.0（修复 CVE-2024-33663 / CVE-2024-33664）、移除停止维护的 passlib 改为直接使用 bcrypt 4.2.1（保持 72 字节截断语义，并加入畸形哈希格式校验）、新增 `test_sandbox_security.py` 与 `test_password_hashing.py`、清理未使用导入、README 增加 CI / LICENSE 徽章、CI 与 `scripts/verify.sh` 接入新增测试；实测覆盖率总计约 74%，详见 `docs/SECURITY.md`

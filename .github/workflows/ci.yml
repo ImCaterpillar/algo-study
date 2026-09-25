@@ -30,7 +30,7 @@ jobs:
           pip install -r requirements.txt -r requirements-dev.txt
           pip install coverage pytest
 
-      - name: Verify backend (compile + smoke + regression + coverage)
+      - name: Verify backend (compile + smoke + regression + pytest + coverage)
         working-directory: backend
         env:
           SECRET_KEY: ci-secret-key-for-tests-only
@@ -38,9 +38,10 @@ jobs:
           python -m compileall -q app
           python smoke_test.py
           python regression_test.py
+          python -m pytest test_api_extended.py test_password_hashing.py test_sandbox_security.py -q
           python -m coverage run --source=app smoke_test.py
           python -m coverage run --append --source=app regression_test.py
-          python -m coverage run --append --source=app -m pytest test_api_extended.py -q
+          python -m coverage run --append --source=app -m pytest test_api_extended.py test_password_hashing.py test_sandbox_security.py -q
           python -m coverage report --fail-under=65
 
       - name: Set up Node

@@ -1,6 +1,3 @@
-from typing import Optional
-import json
-
 def analyze_problem_difficulty(problem_description: str, examples: list, constraints: str) -> dict:
     """分析题目难度"""
     length = len(problem_description)
