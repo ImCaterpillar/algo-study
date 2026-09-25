@@ -71,4 +71,7 @@ jobs:
         working-directory: frontend
         env:
           CI: 'true'
+          # 后端只监听 IPv4 的 127.0.0.1；在 Linux 上 localhost 可能先解析到 ::1，
+          # 因此显式指定 API 地址，避免浏览器走 IPv6 连不上。
+          VITE_API_BASE_URL: 'http://127.0.0.1:8000/api'
         run: npx playwright test --reporter=line
