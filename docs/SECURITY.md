@@ -1,7 +1,8 @@
 # 安全说明（Security Notes）
 
 本文记录 AlgoStudy 当前的安全边界、已修复的问题，以及**尚未**解决的问题。
-它同时是以下变更的记录文档：沙箱加固、依赖升级（python-jose / passlib）。
+它同时是以下变更的记录文档：沙箱加固、后端依赖升级（python-jose / passlib）、
+前端生产依赖漏洞修复（npm audit）。
 
 ---
 
@@ -136,6 +137,33 @@ bcrypt 合法区间 04–31 的 bcrypt 哈希，不合法直接返回 `False`。
 > `checkpw` 的探针脚本没有正常退出。在隔离实验中（每个用例独立子进程）全部用例都能正常
 > 结束，未复现该现象，故此处仅作为观察记录，不据此声称存在死锁。无论该现象成因如何，
 > 上述格式校验都使其无法被触发。
+
+### 2.4 前端生产依赖漏洞（Node 生态，已修复）
+
+CI 里的 `npm audit --omit=dev` 步骤**一直在失败**——包括初始提交那次运行，
+即 CI 从建立起就是红的。它报出 6 个生产依赖漏洞：
+
+| 依赖 | 级别 | 类型 | 处置 |
+| --- | --- | --- | --- |
+| `axios` | high | 直接依赖 | `npm audit fix`，在既有 `^1.7.9` 范围内升级 |
+| `form-data` | high | 传递依赖（经 axios） | 随上一条一并修复 |
+| `dompurify` | high | 传递依赖 | 随上一并修复（`overrides` 已允许修复版本） |
+| `@remix-run/router` | moderate | 传递依赖 | 随上一并修复 |
+| `react-router-dom` | moderate | 直接依赖 | **6 → 7.18.4**（修复只发布于 7.18+，必须跨大版本） |
+| `react-router` | moderate | 传递依赖 | 随上一条一并升级 |
+
+`react-router-dom` 的修复版本只存在于 7.18 之后，因此只能跨大版本升级。应用使用的都是
+v6 / v7 通用 API（`BrowserRouter`、`Routes`/`Route`、`Link`、`NavLink`、`useNavigate`、
+`useParams`），升级后 `npm run build` 通过。当前 `npm audit --omit=dev` 报告
+**0 个漏洞**，退出码 0。
+
+### 2.5 CI 中另一处 Windows 专有写法（已修复）
+
+`frontend/playwright.config.js` 用
+`cmd /c "cd ..\backend && .venv\Scripts\python.exe -m uvicorn ..."` 启动后端——这是
+Windows 专有写法，在 `ubuntu-latest` 上无法执行。由于 audit 步骤先失败、E2E 步骤从未运行，
+该缺陷一直被掩盖。现改为调用 `frontend/e2e/start-backend.js`：按平台选择 `backend/.venv`，
+支持 `E2E_PYTHON` 显式覆盖，并回退到 CI 提供的 `python3` / `python`。
 
 ---
 
